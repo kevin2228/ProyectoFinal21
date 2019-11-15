@@ -172,5 +172,13 @@ public class MantenimientoMySQL {
                 String url  = Config.urlEliminar;
 
 
+                dialogo.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo, int id) {
 
+                        progressDialog.setCancelable(false);
+                        progressDialog.setMessage("Espere por favor, Estamos trabajando en el servidor");
+                        progressDialog.show();
+
+                        //String url = "http://mjgl.com.sv/mysqlcrud/eliminar.php";
+                        String url  = Config.urlEliminar;
 }
