@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item
+            android:id="@+id/action_salir"
+            android:icon="@drawable/ic_close_black_24dp"
+            android:orderInCategory="3"
+            android:title="Salir"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_guardar"
+            android:orderInCategory="4"
+            android:title="Guardar"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_Inicio"
+            android:orderInCategory="4"
+            android:title="Inicio"
+            app:showAsAction="never" />
+
+</menu>
