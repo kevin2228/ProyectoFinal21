@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MostrarAutor"></activity>
+        <activity android:name=".NumeroHimno"></activity>
+        <activity android:name=".MostrarAutor" />
         <activity android:name=".busqueda" />
         <activity
             android:name=".Inicio"
