@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SplashScreen"
+    android:background="@drawable/cristo"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Docente"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Manuel de Jesús Gamez López"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Integrantes"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Claudia Antonia Hernandez Montano"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Lisbeth Arely López Melendez"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Kevin Alexander García Cruz"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Manuel Eduardo Fernandez Jovel"
+        android:textSize="20dp"
+        android:textColor="#FDFCFC"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        />
+
+
+
+</LinearLayout>
