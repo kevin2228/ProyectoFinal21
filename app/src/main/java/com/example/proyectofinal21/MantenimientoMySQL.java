@@ -2,6 +2,7 @@ package com.example.proyectofinal21;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -152,7 +153,7 @@ public class MantenimientoMySQL {
 
     public void eliminar(final Context context, final String codigo){
 
-       /* progressDialog = new ProgressDialog(context);
+       progressDialog = new ProgressDialog(context);
         dialogo = new AlertDialog.Builder(context);
         dialogo.setIcon(R.drawable.delete);
         dialogo.setTitle("¡¡¡Advertencia!!!");
@@ -160,6 +161,16 @@ public class MantenimientoMySQL {
                 "Código: "+codigo);
         dialogo.setCancelable(false);
 
-     */
+        dialogo.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo, int id) {
+
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Espere por favor, Estamos trabajando en el servidor");
+                progressDialog.show();
+
+                //String url = "http://mjgl.com.sv/mysqlcrud/eliminar.php";
+                String url  = Config.urlEliminar;
+
+
 
 }
