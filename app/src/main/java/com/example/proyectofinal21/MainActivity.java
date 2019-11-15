@@ -74,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.mycolor1));
+        toolbar.setTitleMargin(0, 0, 0, 0);
+        toolbar.setSubtitle("Himnario");
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.mycolor));
 
 
     }
