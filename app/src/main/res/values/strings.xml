@@ -2,4 +2,7 @@
     <string name="app_name">ProyectoFinal21</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_inicio">Inicio</string>
+    <string name="Guardar">Guardar</string>
+    <string name="salir">salir</string>
+    <string name="listarticulos1">listararticulos1</string>
 </resources>
