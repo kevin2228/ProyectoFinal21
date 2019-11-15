@@ -44,13 +44,16 @@ public class MySingleton {
         return mInstance;
     }
 
+
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
 
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
+
         return mRequestQueue;
     }
+
 
     public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
@@ -59,6 +62,7 @@ public class MySingleton {
     public ImageLoader getImageLoader() {
         return mImageLoader;
     }
+
 
 
 }
