@@ -50,13 +50,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             holder.textViewActor1.setText(String.valueOf(product.getActor()));
 
         }else{
-            Glide.with(mCtx)
+            /*Glide.with(mCtx)
                     .load(product.getImagen())
                     .into(holder.imageView);
 
             holder.textViewCodigo1.setText(String.valueOf(product.getCodigo()));
             holder.textViewgenero1.setText(product.getGenero());
-            holder.textViewActor1.setText(String.valueOf(product.getActor()));
+            holder.textViewActor1.setText(String.valueOf(product.getActor()));*/
         }
 
     }
