@@ -3,6 +3,7 @@ package com.example.proyectofinal21;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -191,4 +192,66 @@ public class MantenimientoMySQL {
                                     String resultJSON = respuestaJSON.getString("estado");            // estado es el nombre del campo en el JSON
                                     String result_msj = respuestaJSON.getString("mensaje");           // estado es el nombre del campo en el JSON
                                     if (resultJSON.equals("1")) {
+                                        Toast toast = Toast.makeText(context, result_msj, Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                        toast.show();
+
+                                    } else if (resultJSON.equals("2")) {
+                                        Toast toast = Toast.makeText(context, "--> Nothing." +
+                                                "\n" + result_msj, Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                        toast.show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                // Hiding the progress dialog after all task complete.
+                                progressDialog.dismiss();
+                            }
+
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Hiding the progress dialog after all task complete.
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Algo salio mal. Intente mas tarde\n" +
+                                        "Verifique su acceso a Internet.", Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> map = new HashMap<String, String>();
+                                map.put("Content-Type", "application/json; charset=utf-8");
+                                map.put("Accept", "application/json");
+                                map.put("codigo", codigo);
+                                return map;
+                            }
+                        };
+
+                        MySingleton.getInstance(context).addToRequestQueue(request);
+                    }
+                });
+
+                dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo, int id) {
+                        Toast toast = Toast.makeText(context, "Operación Cancelada.", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+                });
+
+                //AlertDialog dialogo = builder.create();
+                dialogo.show();
+
+            }
+
+            //public void consultarCodigo(final Context context, final String codigo){
+            public void consultarNumero(final Context context, final String codigo){
+                progressDialog = new ProgressDialog(context);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Espere por favor, Estamos trabajando en su petición en el servidor");
+                progressDialog.show();
+
+                String url  = Config.urlConsultaCodigo;
 }
