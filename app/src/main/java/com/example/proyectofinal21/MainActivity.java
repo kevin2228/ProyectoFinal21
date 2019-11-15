@@ -33,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
     String genero = "";
 
 
+    MantenimientoMySQL manto = new MantenimientoMySQL();
+    Dto datos = new Dto();
+
+    //Banderas para saber estados del metodo CRUD
+    boolean estadoGuarda = false;
+    boolean estadoEliminar = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
