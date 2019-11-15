@@ -1,20 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Registro Himnario"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="#000"
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/cruz" />
+
+            <EditText
+                android:id="@+id/et_codigo"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/inputboton"
+                android:drawablePadding="5dp"
+                android:fontFamily="sans-serif-black"
+                android:hint="INGRSESE ID"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:shadowRadius="5" />
+
+            <EditText
+                android:id="@+id/et_autor"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="sans-serif-black"
+                android:hint="INGRESE AUTOR"
+                android:background="@drawable/inputboton"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                />
+
+            <EditText
+                android:id="@+id/et_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/inputboton"
+                android:drawablePadding="5dp"
+                android:fontFamily="sans-serif-black"
+                android:hint="NOMBRE ALABANZA"
+                android:paddingLeft="15dp"
+                />
+
+            <EditText
+                android:id="@+id/et_letra"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/inputboton"
+                android:drawablePadding="5dp"
+                android:fontFamily="sans-serif-black"
+                android:hint="INGRESE LETRA"
+                android:paddingLeft="15dp" />
+
+            <EditText
+                android:id="@+id/et_genero"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/inputboton"
+                android:drawablePadding="5dp"
+                android:fontFamily="sans-serif-black"
+                android:hint="ALABANZA O CORO"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp" />
+
+            <Button
+                android:id="@+id/btn_guardar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_estilo"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="GUARDAR"
+                android:textColor="#0A0A0A"
+                android:textSize="18dp"
+                />
+
+            <Button
+                android:id="@+id/btn_consultaDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_estilo"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="BUSCAR POR DESCRIPCION"
+                android:textColor="#0A0A0A"
+                android:textSize="18dp"
+                />
+
+            <Button
+                android:id="@+id/btn_eliminar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_estilo"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="BORRAR"
+                android:textColor="#0A0A0A"
+                android:textSize="18dp"
+                />
+
+            <Button
+                android:id="@+id/btn_actualizar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:background="@drawable/btn_estilo"
+                android:text="Editar"
+                android:textColor="#0A0A0A"
+                android:textSize="18dp"
+                />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
