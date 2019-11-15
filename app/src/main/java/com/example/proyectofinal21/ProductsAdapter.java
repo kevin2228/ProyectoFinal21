@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 //import android.support.v7.widget.RecyclerView;
@@ -50,13 +52,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             holder.textViewActor1.setText(String.valueOf(product.getActor()));
 
         }else{
-            /*Glide.with(mCtx)
+            Glide.with(mCtx)
                     .load(product.getImagen())
                     .into(holder.imageView);
 
             holder.textViewCodigo1.setText(String.valueOf(product.getCodigo()));
             holder.textViewgenero1.setText(product.getGenero());
-            holder.textViewActor1.setText(String.valueOf(product.getActor()));*/
+            holder.textViewActor1.setText(String.valueOf(product.getActor()));
         }
 
     }
