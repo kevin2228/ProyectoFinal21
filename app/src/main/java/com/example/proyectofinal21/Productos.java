@@ -47,6 +47,7 @@ public class Productos {
         this.nombre = nombre;
     }
 
+
     public Productos(int codigo, String letra, String actor, String genero, String nombre) {
         this.codigo = codigo;
         this.letra = letra;
