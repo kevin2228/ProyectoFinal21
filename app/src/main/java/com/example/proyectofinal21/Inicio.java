@@ -1,5 +1,6 @@
 package com.example.proyectofinal21;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 
 public class Inicio extends AppCompatActivity {
+    private Button btn_consultaNumero, btn_consultaporNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +22,21 @@ public class Inicio extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        btn_consultaNumero = findViewById(R.id.btn_consultaNumero);
+        btn_consultaporNombre = findViewById(R.id.btn_consultaporNombre);
+
+
     }
 
-}
+    /*public void numerohimno(View view){
+        Intent i  = new Intent(this, NumeroHimno.class);
+        startActivity(i);*/
+
+    }
+
+    /*public void nombreAutor(View view){
+        Intent i = new Intent(this, NombreAutor.class );
+        startActivity(i);
+    }
+
+}*/
