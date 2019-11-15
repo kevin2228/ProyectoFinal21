@@ -152,8 +152,14 @@ public class MantenimientoMySQL {
 
     public void eliminar(final Context context, final String codigo){
 
-        progressDialog = new ProgressDialog(context);
+       /* progressDialog = new ProgressDialog(context);
+        dialogo = new AlertDialog.Builder(context);
+        dialogo.setIcon(R.drawable.delete);
+        dialogo.setTitle("¡¡¡Advertencia!!!");
+        dialogo.setMessage("¿Realmente desea borrar el registro?\n" +
+                "Código: "+codigo);
+        dialogo.setCancelable(false);
 
-
+     */
 
 }
