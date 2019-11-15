@@ -36,6 +36,13 @@ public class MySingleton {
                 });
     }
 
+    public static synchronized MySingleton getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new MySingleton(context);
+        }
+        return mInstance;
+    }
+
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
 
