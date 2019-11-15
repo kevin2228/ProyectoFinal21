@@ -47,7 +47,7 @@
                 android:background="@drawable/inputboton"
                 android:drawablePadding="5dp"
                 android:fontFamily="sans-serif-black"
-                android:hint="INGRSESE ID"
+                android:hint="INGRESE ID"
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:shadowRadius="5" />
