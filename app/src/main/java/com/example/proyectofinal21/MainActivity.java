@@ -11,8 +11,27 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText et_codigo, et_letra, et_genero,et_autor, et_nombre;
+    private Button btn_guardar, btn_eliminar, btn_actualizar;//btn_consultaCodigo, btn_consultaDescripcion,
+
+    boolean inputEt=false;
+    boolean inputEd=false;
+    boolean input1=false;
+    boolean input2=false;
+    boolean input3=false;
+    int resultadoInsert=0;
+
+    String senal = "";
+    String codigo = "";
+    String letra = "";
+    String nombre = "";
+    String autor = "";
+    String genero = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            et_codigo.setText(null);
+            et_letra.setText(null);
+            et_autor.setText(null);
+            et_nombre.setText(null);
+            et_genero.setText(null);
             return true;
         }
 
