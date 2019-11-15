@@ -150,7 +150,9 @@ public class MantenimientoMySQL {
     }
 
 
+    public void eliminar(final Context context, final String codigo){
 
+        progressDialog = new ProgressDialog(context);
 
 
 
