@@ -181,4 +181,14 @@ public class MantenimientoMySQL {
 
                         //String url = "http://mjgl.com.sv/mysqlcrud/eliminar.php";
                         String url  = Config.urlEliminar;
+
+                        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
+                                    JSONObject respuestaJSON = new JSONObject(response.toString());         //Creo un JSONObject a partir del StringBuilder pasado a cadena
+                                    String resultJSON = respuestaJSON.getString("estado");            // estado es el nombre del campo en el JSON
+                                    String result_msj = respuestaJSON.getString("mensaje");           // estado es el nombre del campo en el JSON
+                                    if (resultJSON.equals("1")) {
 }
