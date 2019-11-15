@@ -1,11 +1,15 @@
 package com.example.proyectofinal21;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import com.android.volley.AuthFailureError;
@@ -14,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -254,4 +259,54 @@ public class MantenimientoMySQL {
                 progressDialog.show();
 
                 String url  = Config.urlConsultaCodigo;
+                StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                        url,
+                        new Response.Listener<String>() {
+                            @RequiresApi(api = Build.VERSION_CODES.M)
+                            @SuppressLint("ResourceType")
+                            @Override
+                            public void onResponse(String response) {
+                                if(response.equals("0")) {
+                                    Toast.makeText(context, "No se encontrarón resultados para la búsqueda especificada.", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }else{
+                                    try {
+                                /*
+                                Toast toast = Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                */
+                                        JSONArray jsonArray = new JSONArray(response);
+                                        String codigo = jsonArray.getJSONObject(0).getString("codigo");
+                                        String letra = jsonArray.getJSONObject(0).getString("letra");
+                                        String autor = jsonArray.getJSONObject(0).getString("autor");
+                                        String nombre = jsonArray.getJSONObject(0).getString("genero");
+                                        String genero = jsonArray.getJSONObject(0).getString("nombre");
+
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        intent.putExtra("senal", "1");
+                                        intent.putExtra("codigo", codigo.toString());
+                                        intent.putExtra("letra", letra);
+                                        intent.putExtra("autor", autor);
+                                        intent.putExtra("genero", genero);
+                                        intent.putExtra("nombre", nombre);
+
+                                        context.startActivity(intent);
+
+
+                                        progressDialog.dismiss();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                progressDialog.dismiss();
+                            }
+                        },
+
+
+
+
 }
+
+
+
