@@ -8,6 +8,9 @@ public class Dto {
     String genero;
     String nombre;
 
+    public Dto() {
+    }
+
     public Dto(int codigo, String autor, String letra, String genero, String nombre) {
         this.codigo = codigo;
         this.autor = autor;
