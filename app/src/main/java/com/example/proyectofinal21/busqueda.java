@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class busqueda {
 
@@ -88,8 +92,15 @@ public class busqueda {
                         }
                     }
                 }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("autor", autor);
+                return map;
+            }
+        };
 
-        }
+        MySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
     }
 
     }
