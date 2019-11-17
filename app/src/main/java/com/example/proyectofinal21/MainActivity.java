@@ -293,12 +293,27 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_limpiar) {
             et_codigo.setText(null);
             et_letra.setText(null);
             et_autor.setText(null);
             et_nombre.setText(null);
             et_genero.setText(null);
+            return true;
+        }else if(id == R.id.action_listaArticulos){
+            Intent spinnerActivity = new Intent(MainActivity.this, ConsultaRecicleView.class);
+            startActivity(spinnerActivity);
+            return true;
+        }else if(id == R.id.action_salir){
+            DialogConfirmacion();
+            return true;
+        }else if(id == R.id.action_guardar){
+            Intent spinnerActivity = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(spinnerActivity);
+            return true;
+        }else if(id == R.id.action_Inicio){
+            Intent spinnerActivity = new Intent(MainActivity.this, Inicio.class);
+            startActivity(spinnerActivity);
             return true;
         }
 
