@@ -394,4 +394,10 @@ public class MainActivity extends AppCompatActivity {
         String letra = preferences.getString("letra","Sin letra");
         return letra;   //return preferences.getString("tiempo", "Sin configurar.");
     }
+
+    public String getSharedAutor(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("Himnario", MODE_PRIVATE);
+        String autor = preferences.getString("autor","Sin letra");
+        return autor;   //return preferences.getString("tiempo", "Sin configurar.");
+    }
 }
