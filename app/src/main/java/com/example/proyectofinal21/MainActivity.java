@@ -257,9 +257,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Que Buscas", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
     }
+
+
+    public void limpiarDatos(){
+        et_codigo.setText(null);
+        et_letra.setText(null);
+        et_autor.setText(null);
+        et_nombre.setText(null);
+        et_genero.setText(null);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
