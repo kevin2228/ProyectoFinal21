@@ -50,4 +50,3 @@ public class NombreAutor extends AppCompatActivity {
 
     }
     }
-}
