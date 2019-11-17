@@ -1,6 +1,7 @@
 package com.example.proyectofinal21;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -79,6 +81,117 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleMargin(0, 0, 0, 0);
         toolbar.setSubtitle("Himnario");
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.mycolor));
+
+        ///y esto para pantalla completa (oculta incluso la barra de estado)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        et_codigo = findViewById(R.id.et_codigo);
+        et_letra = findViewById(R.id.et_letra);
+        et_autor = findViewById(R.id.et_autor);
+        et_nombre = findViewById(R.id.et_nombre);
+        et_genero =  findViewById(R.id.et_genero);
+        btn_guardar =  findViewById(R.id.btn_guardar);
+        // btn_consultaCodigo = (Button) findViewById(R.id.btn_consultaCodigo);
+        //btn_consultaDescripcion = findViewById(R.id.btn_consultaDescripcion);
+        btn_eliminar = findViewById(R.id.btn_eliminar);
+        btn_actualizar = findViewById(R.id.btn_actualizar);
+        //tv_resultado = (TextView) findViewById(R.id.tv_resultado);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogConfirmacion();
+            }
+        });
+
+
+        /******************************************************************/
+        //BLOQUE DE CÓDIGO PARA MOSTRAR DATOS DE LA BUSQUEDA//
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+
+                senal = bundle.getString("senal");
+                codigo = bundle.getString("codigo");
+                letra = bundle.getString("letra");
+                nombre = bundle.getString("nombre");
+                genero = bundle.getString("genero");
+                autor = bundle.getString("autor");
+                if (senal.equals("1")) {
+                    et_codigo.setText(codigo);
+                    et_letra.setText(letra);
+                    et_nombre.setText(nombre);
+                    et_autor.setText(autor);
+                    et_genero.setText(genero);
+                    //finish();
+                }else if(senal.equals("2")){
+
+                }
+            }
+        }catch (Exception e){
+
+        }
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(et_codigo.getText().toString().length()==0){
+                    et_codigo.setError("Campo obligatorio");
+                    inputEt = false;
+                }else {
+                    inputEt=true;
+                }
+                if(et_letra.getText().toString().length()==0){
+                    et_letra.setError("Campo obligatorio");
+                    inputEd = false;
+                }else {
+                    inputEd=true;
+                }
+                if(et_autor.getText().toString().length()==0){
+                    et_autor.setError("Campo obligatorio");
+                    input1 = false;
+                }else {
+                    input1=true;
+                }
+                if(et_nombre.getText().toString().length()==0){
+                    et_nombre.setError("Campo obligatorio");
+                    input3 = false;
+                }else {
+                    input3=true;
+                }
+                if(et_genero.getText().toString().length()==0){
+                    et_genero.setError("Campo obligatorio");
+                    input2 = false;
+                }else {
+                    input2=true;
+                }
+
+                if (inputEt && inputEd && input1 && input2&& input3){
+                    String codigo = et_codigo.getText().toString();
+                    String letra = et_letra.getText().toString();
+                    String autor = et_autor.getText().toString();
+                    String nombre = et_nombre.getText().toString();
+                    String genero = et_genero.getText().toString();
+                    manto.guardar(MainActivity.this, codigo, letra, autor,nombre, genero);
+
+                    limpiarDatos();
+                    et_codigo.requestFocus();
+
+                    /*
+                    estadoGuarda = manto.guardar1(MainActivity.this, codigo, descripcion, precio);
+                    if(estadoGuarda){
+                        Toast.makeText(MainActivity.this, "Registro Almacenado Correctamente.", Toast.LENGTH_SHORT).show();
+                        limpiarDatos();
+                        et_codigo.requestFocus();
+                    }*/
+
+                }
+
+
+            }
+        });
 
 
     }
