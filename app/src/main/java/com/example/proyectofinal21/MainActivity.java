@@ -400,4 +400,10 @@ public class MainActivity extends AppCompatActivity {
         String autor = preferences.getString("autor","Sin letra");
         return autor;   //return preferences.getString("tiempo", "Sin configurar.");
     }
+
+    public String getSharedGenero(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("Himnario", MODE_PRIVATE);
+        String genero = preferences.getString("genero","Sin letra");
+        return genero;   //return preferences.getString("tiempo", "Sin configurar.");
+    }
 }
