@@ -1,7 +1,9 @@
 package com.example.proyectofinal21;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -378,5 +380,12 @@ public class MainActivity extends AppCompatActivity {
         try{
             Thread.sleep(1000);
         }catch (InterruptedException e){}
+    }
+
+    public String getSharedCodigo(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("Himnario", MODE_PRIVATE);
+        String codigo = preferences.getString("codigo","0");
+        return codigo;   //return preferences.getString("tiempo", "Sin configurar.");
+
     }
 }
