@@ -156,12 +156,12 @@ public class MantenimientoMySQL {
         return estadoGuardar;
     }
 
-
     public void eliminar(final Context context, final String codigo){
 
-       progressDialog = new ProgressDialog(context);
+        progressDialog = new ProgressDialog(context);
+
         dialogo = new AlertDialog.Builder(context);
-        dialogo.setIcon(R.drawable.delete);
+        dialogo.setIcon(R.drawable.ic_delete);
         dialogo.setTitle("¡¡¡Advertencia!!!");
         dialogo.setMessage("¿Realmente desea borrar el registro?\n" +
                 "Código: "+codigo);
@@ -177,136 +177,74 @@ public class MantenimientoMySQL {
                 //String url = "http://mjgl.com.sv/mysqlcrud/eliminar.php";
                 String url  = Config.urlEliminar;
 
+                StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
+                            JSONObject respuestaJSON = new JSONObject(response.toString());         //Creo un JSONObject a partir del StringBuilder pasado a cadena
+                            String resultJSON = respuestaJSON.getString("estado");            // estado es el nombre del campo en el JSON
+                            String result_msj = respuestaJSON.getString("mensaje");           // estado es el nombre del campo en el JSON
+                            if (resultJSON.equals("1")) {
 
-                dialogo.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo, int id) {
-
-                        progressDialog.setCancelable(false);
-                        progressDialog.setMessage("Espere por favor, Estamos trabajando en el servidor");
-                        progressDialog.show();
-
-                        //String url = "http://mjgl.com.sv/mysqlcrud/eliminar.php";
-                        String url  = Config.urlEliminar;
-
-                        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
-                                    JSONObject respuestaJSON = new JSONObject(response.toString());         //Creo un JSONObject a partir del StringBuilder pasado a cadena
-                                    String resultJSON = respuestaJSON.getString("estado");            // estado es el nombre del campo en el JSON
-                                    String result_msj = respuestaJSON.getString("mensaje");           // estado es el nombre del campo en el JSON
-                                    if (resultJSON.equals("1")) {
-                                        Toast toast = Toast.makeText(context, result_msj, Toast.LENGTH_LONG);
-                                        toast.setGravity(Gravity.CENTER, 0, 0);
-                                        toast.show();
-
-                                    } else if (resultJSON.equals("2")) {
-                                        Toast toast = Toast.makeText(context, "--> Nothing." +
-                                                "\n" + result_msj, Toast.LENGTH_LONG);
-                                        toast.setGravity(Gravity.CENTER, 0, 0);
-                                        toast.show();
-                                    }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                                // Hiding the progress dialog after all task complete.
-                                progressDialog.dismiss();
-                            }
-
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // Hiding the progress dialog after all task complete.
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Algo salio mal. Intente mas tarde\n" +
-                                        "Verifique su acceso a Internet.", Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                            protected Map<String, String> getParams() throws AuthFailureError {
-                                Map<String, String> map = new HashMap<String, String>();
-                                map.put("Content-Type", "application/json; charset=utf-8");
-                                map.put("Accept", "application/json");
-                                map.put("codigo", codigo);
-                                return map;
-                            }
-                        };
-
-                        MySingleton.getInstance(context).addToRequestQueue(request);
-                    }
-                });
-
-                dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo, int id) {
-                        Toast toast = Toast.makeText(context, "Operación Cancelada.", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
-                });
-
-                //AlertDialog dialogo = builder.create();
-                dialogo.show();
-
-            }
-
-            //public void consultarCodigo(final Context context, final String codigo){
-            public void consultarNumero(final Context context, final String codigo){
-                progressDialog = new ProgressDialog(context);
-                progressDialog.setCancelable(false);
-                progressDialog.setMessage("Espere por favor, Estamos trabajando en su petición en el servidor");
-                progressDialog.show();
-
-                String url  = Config.urlConsultaCodigo;
-                StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                        url,
-                        new Response.Listener<String>() {
-                            @RequiresApi(api = Build.VERSION_CODES.M)
-                            @SuppressLint("ResourceType")
-                            @Override
-                            public void onResponse(String response) {
-                                if(response.equals("0")) {
-                                    Toast.makeText(context, "No se encontrarón resultados para la búsqueda especificada.", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }else{
-                                    try {
-                                /*
-                                Toast toast = Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(context, result_msj, Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 toast.show();
-                                */
-                                        JSONArray jsonArray = new JSONArray(response);
-                                        String codigo = jsonArray.getJSONObject(0).getString("codigo");
-                                        String letra = jsonArray.getJSONObject(0).getString("letra");
-                                        String autor = jsonArray.getJSONObject(0).getString("autor");
-                                        String nombre = jsonArray.getJSONObject(0).getString("genero");
-                                        String genero = jsonArray.getJSONObject(0).getString("nombre");
 
-                                        Intent intent = new Intent(context, MainActivity.class);
-                                        intent.putExtra("senal", "1");
-                                        intent.putExtra("codigo", codigo.toString());
-                                        intent.putExtra("letra", letra);
-                                        intent.putExtra("autor", autor);
-                                        intent.putExtra("genero", genero);
-                                        intent.putExtra("nombre", nombre);
-
-                                        context.startActivity(intent);
-
-
-                                        progressDialog.dismiss();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                progressDialog.dismiss();
+                            } else if (resultJSON.equals("2")) {
+                                Toast toast = Toast.makeText(context, "--> Nothing." +
+                                        "\n" + result_msj, Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
                             }
-                        },
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Hiding the progress dialog after all task complete.
+                        progressDialog.dismiss();
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Hiding the progress dialog after all task complete.
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Algo salio mal. Intente mas tarde\n" +
+                                "Verifique su acceso a Internet.", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("Content-Type", "application/json; charset=utf-8");
+                        map.put("Accept", "application/json");
+                        map.put("codigo", codigo);
+                        return map;
+                    }
+                };
+
+                MySingleton.getInstance(context).addToRequestQueue(request);
+            }
+        });
+
+        dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo, int id) {
+                Toast toast = Toast.makeText(context, "Operación Cancelada.", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        });
+
+        //AlertDialog dialogo = builder.create();
+        dialogo.show();
+
+    }
 
 
 
 }
+
 
 
 
