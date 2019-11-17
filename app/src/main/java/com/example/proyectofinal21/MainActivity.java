@@ -344,4 +344,34 @@ public class MainActivity extends AppCompatActivity {
         });
         dialogo.show();
     }
+
+    //Creación de HILOS
+    void Hilo(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=1; i<=1; i++){
+                    demora();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String cod = getSharedCodigo(MainActivity.this);
+                        String le = getSharedLetra(MainActivity.this);
+                        String au = getSharedAutor(MainActivity.this);
+                        String nom = getSharedNombre(MainActivity.this);
+                        String gene = getSharedGenero(MainActivity.this);
+
+                        et_codigo.setText(cod);
+                        et_letra.setText(le);
+                        et_autor.setText(au);
+                        et_genero.setText(gene);
+
+                        //Toast.makeText(MainActivity.this, "Código: "+cod + "\nPrecio: "+pre + "\nDescripción: "+des, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).start();
+    }
+
 }
