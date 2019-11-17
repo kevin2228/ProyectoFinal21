@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -391,7 +392,67 @@ public class MantenimientoMySQL {
 
     }
 
+    public ArrayList<String> consultarAllArticulos(final Context context){
 
+        final ArrayList productosList = new ArrayList<>();  //ArrayList<String>
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Espere por favor, Estamos trabajando en su petición en el servidor");
+        progressDialog.show();
+
+        String url  = Config.urlConsultaAllArticulos;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            int totalEncontrados = array.length();
+                            Toast.makeText(context, "Total: "+totalEncontrados, Toast.LENGTH_SHORT).show();
+
+                            for (int i = 0; i < array.length(); i++) {
+
+                                JSONObject articulosObject = array.getJSONObject(i);
+
+                                int codigo = articulosObject.getInt("codigo");
+                                String letra = articulosObject.getString("letra");
+                                String genero = articulosObject.getString("genero");
+                                String autor = articulosObject.getString("autor");
+                                String nombre = articulosObject.getString("nombre");
+                                Productos objeto = new Productos(codigo, letra,autor, genero,nombre);
+                                productosList.add(objeto);
+
+                                /*
+                                productosList.add(new Productos(
+                                        articulosObject.getInt("codigo"),
+                                        articulosObject.getString("descripcion"),
+                                        articulosObject.getDouble("precio"),
+                                        articulosObject.getString("imagen")
+                                ));*/
+                            }
+
+                            //adapter = new ProductsAdapter(context, productosList);
+                            //recyclerView.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Error. Compruebe su acceso a Internet.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Volley.newRequestQueue(this).add(stringRequest);
+        MySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
+        return productosList;
+    }
 
 
 
