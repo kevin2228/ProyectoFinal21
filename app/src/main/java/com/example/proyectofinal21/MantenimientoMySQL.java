@@ -531,6 +531,16 @@ public class MantenimientoMySQL {
 
     }
 
+    public String informacion(Dto datos){
+        String info;
+        info = "Codigo = "+datos.getCodigo() + "\n" ;
+        info += "letra = "+datos.getLetra() + "\n";
+        info += "genero = "+datos.getGenero() + "\n";
+        info += "nombre = "+datos.getNombre() + "\n";
+        info += "autor = "+datos.getAutor() + "\n";
+        return info;
+    }
+
 }
 
 
