@@ -313,6 +313,86 @@ public class MantenimientoMySQL {
 
     }
 
+    public void consultarAutor(final Context context, final String autor){
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Espere por favor, Estamos trabajando en su petición en el servidor");
+        progressDialog.show();
+
+        String url  = Config.urlbuscarhimnario;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @SuppressLint("ResourceType")
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.equals("0")) {
+                            Toast.makeText(context, "No se encontrarón resultados para la búsqueda especificada.", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }else{
+                            try {
+                                /*
+                                Toast toast = Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                */
+                                JSONArray jsonArray = new JSONArray(response);
+                                String codigo = jsonArray.getJSONObject(0).getString("codigo");
+                                String letra = jsonArray.getJSONObject(0).getString("letra");
+                                String nombre = jsonArray.getJSONObject(0).getString("nombre");
+                                String autor = jsonArray.getJSONObject(0).getString("autor");
+                                String genero = jsonArray.getJSONObject(0).getString("genero");
+
+                                datos.setCodigo(Integer.parseInt(codigo));
+                                datos.setLetra(letra);
+                                datos.setGenero(genero);
+                                datos.setAutor(autor);
+                                datos.setNombre(nombre);
+
+                                Intent intent = new Intent(context, MainActivity.class);
+                                intent.putExtra("senal", "1");
+                                intent.putExtra("codigo", codigo.toString());
+                                intent.putExtra("letra", letra);
+                                intent.putExtra("autor", autor);
+                                intent.putExtra("nombre", nombre);
+                                intent.putExtra("genero", genero);
+                                //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                context.startActivity(intent);
+
+                                progressDialog.dismiss();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        progressDialog.dismiss();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if(error != null){
+                            Toast.makeText(context, "No se ha podido establecer conexión con el servidor. Verifique su acceso a Internet.", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("autor", autor);
+                return map;
+            }
+        };
+
+        MySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
+    }
+
+
+
 
 
 }
