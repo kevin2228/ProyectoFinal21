@@ -193,6 +193,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Evento clic del botón eliminar.
+        btn_eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(et_codigo.getText().toString().length()==0){
+                    et_codigo.setError("campo obligatorio");
+                    inputEt = false;
+                }else {
+                    inputEt=true;
+                }
+
+                if(inputEt){
+                    String codigo = et_codigo.getText().toString();
+                    manto.eliminar(MainActivity.this, codigo);
+
+                    limpiarDatos();
+                    et_codigo.requestFocus();
+                    /*
+                    if(estadoEliminar){
+                        Toast.makeText(MainActivity.this, "Registro Eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                        limpiarDatos();
+                    }else{
+                         Toast toast = Toast.makeText(getApplicationContext(), "--> Nothing." +
+                                        "\nNo hay información que eliminar.", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                        limpiarDatos();
+                    }*/
+                }
+            }
+        });
+
 
     }
 
