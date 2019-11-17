@@ -37,13 +37,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/btn_estilo"
         android:drawablePadding="-40dp"
-        android:fontFamily="serif-monospace"
-
-        android:paddingLeft="50dp"
-        android:shadowColor="#2314A8"
-        android:shadowDx="-3"
-        android:shadowDy="0"
-        android:shadowRadius="8"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Consultar por Numero"
         android:textColor="#0E0D0D" />
 
@@ -55,13 +49,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/btn_estilo"
-        android:fontFamily="serif-monospace"
-
-        android:paddingLeft="50dp"
-        android:shadowColor="#2314A8"
-        android:shadowDx="-3"
-        android:shadowDy="0"
-        android:shadowRadius="8"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Consultar por Autor"
         android:textColor="#0A0A0A" />
 

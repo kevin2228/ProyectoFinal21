@@ -29,15 +29,17 @@
     <EditText
         android:id="@+id/et_autor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="12dp"
         android:drawablePadding="5dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="sans-serif-condensed-medium"
         android:hint="Ingrese el nombre de autor a buscar"
         android:inputType="textPersonName"
-        android:paddingLeft="25dp" />
+        android:paddingLeft="25dp"
+        android:background="@drawable/inputboton"
+        />
 
 
     <Button
@@ -48,7 +50,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/btn_estilo"
-        android:fontFamily="serif-monospace"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Consultar"
         android:textColor="#0A0A0A" />
 
