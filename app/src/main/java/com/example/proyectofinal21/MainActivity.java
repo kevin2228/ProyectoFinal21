@@ -225,6 +225,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(et_codigo.getText().toString().length()==0){
+                    et_codigo.setError("campo obligatorio");
+                    inputEt = false;
+                }else {
+                    inputEt=true;
+                }
+
+                if(inputEt) {
+
+                    String cod = et_codigo.getText().toString();
+                    String letra = et_letra.getText().toString();
+                    String autor = et_autor.getText().toString();
+                    String nombre = et_nombre.getText().toString();
+                    String genero = et_genero.getText().toString();
+
+                    datos.setCodigo(Integer.parseInt(cod));
+                    datos.setLetra(letra);
+                    datos.setAutor(autor);
+                    datos.setNombre(nombre);
+                    datos.setGenero(genero);
+
+                    manto.modificar(MainActivity.this, datos);
+                    limpiarDatos();
+                    et_codigo.requestFocus();
+                }
+
+            }
+        });
+
 
     }
 
