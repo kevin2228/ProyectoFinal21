@@ -2,6 +2,7 @@ package com.example.proyectofinal21;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,12 @@ public class NombreAutor extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void mostrar(){
+        Intent i = new Intent(this,MostrarAutor.class);
+        startActivity(i);
 
     }
     }
