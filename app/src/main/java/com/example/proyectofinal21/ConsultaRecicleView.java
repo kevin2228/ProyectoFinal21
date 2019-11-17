@@ -82,5 +82,8 @@ public class ConsultaRecicleView extends AppCompatActivity {
         //Toast.makeText(this, "Si", Toast.LENGTH_SHORT).show();
 
         loadProductos();
+
+    }
+
     }
 }
