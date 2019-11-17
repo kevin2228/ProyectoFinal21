@@ -374,4 +374,9 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    private void demora(){
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){}
+    }
 }
