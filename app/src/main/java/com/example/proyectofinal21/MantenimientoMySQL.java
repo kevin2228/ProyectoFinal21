@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -22,9 +23,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MantenimientoMySQL {
 
@@ -539,6 +545,24 @@ public class MantenimientoMySQL {
         info += "nombre = "+datos.getNombre() + "\n";
         info += "autor = "+datos.getAutor() + "\n";
         return info;
+    }
+
+    public void createfile(Context context, String codigo, String letra, String autor, String genero,String nombre){
+        SharedPreferences preferences = context.getSharedPreferences("profeGamez", MODE_PRIVATE);
+        //OBTENIENDO LA FECHA Y HORA ACTUAL DEL SISTEMA.
+        DateFormat formatodate= new SimpleDateFormat("yyyy/MM/dd");
+        String date= formatodate.format(new Date());
+        DateFormat formatotime= new SimpleDateFormat("HH:mm:ss a");
+        String time= formatotime.format(new Date());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("fecha", date);
+        editor.putString("hora", time);
+        editor.putString("codigo", codigo);
+        editor.putString("letra", letra);
+        editor.putString("nombre", nombre);
+        editor.putString("autor", autor);
+        editor.putString("genero", genero);
+        editor.commit();
     }
 
 }
